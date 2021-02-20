@@ -1,5 +1,3 @@
-# hello-world
-
 ## Project setup
 ```
 yarn install
