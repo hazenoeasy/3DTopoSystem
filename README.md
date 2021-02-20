@@ -1,2 +1,24 @@
-# 3DTopoSystem
-WHU 21 Graduation Project. Using threejs to build a 3D interact topo map system
+# hello-world
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
