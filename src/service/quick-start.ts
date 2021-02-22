@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 export default class Threescene {
   scene: THREE.Scene;
@@ -19,7 +20,10 @@ export default class Threescene {
 
   mesh: THREE.Mesh;
 
-  // private node: string;
+  controls: OrbitControls;
+
+  axesHelper: THREE.AxesHelper;
+
   constructor(readonly node: string) {
     this.scene = new THREE.Scene();
     this.geometry = new THREE.BoxGeometry(100, 100, 100);
@@ -28,8 +32,11 @@ export default class Threescene {
     this.renderer = new THREE.WebGLRenderer();
     this.point = new THREE.PointLight(0xffffff);
     this.ambient = new THREE.AmbientLight(0x444444);
+    this.axesHelper = new THREE.AxesHelper(250);
     this.init();
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     window.addEventListener('resize', this.onWindowResize, false);
+    // this.controls.addEventListener('change', this.animate);
   }
 
   private init() {
@@ -44,6 +51,7 @@ export default class Threescene {
     this.scene.add(this.mesh);
     this.scene.add(this.point);
     this.scene.add(this.ambient);
+    this.scene.add(this.axesHelper);
     this.animate();
   }
 
