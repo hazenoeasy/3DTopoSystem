@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div ref="three">
+    <!-- <div id="container">
+    </div> -->
   </div>
 </template>
-
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Threescene from '../service/scene';
 
+let temp: Threescene;
 export default defineComponent({
   name: 'Home',
-  components: {
-    HelloWorld,
+  components: {},
+  mounted() {
+    console.log(this.$refs.three);
+    const S: Threescene = new Threescene(this.$refs.three as Document);
+    temp = S;
+  },
+  beforeUnmount() {
+    temp.desotry();
   },
 });
 </script>
