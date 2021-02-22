@@ -9,9 +9,9 @@ export default class Threescene {
 
   rafId: number;
 
-  private node: Document;
+  private node: string;
 
-  constructor(node: Document) {
+  constructor(node: string) {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
     this.renderer = new THREE.WebGLRenderer();
@@ -25,10 +25,7 @@ export default class Threescene {
     this.camera.lookAt(this.scene.position);
     this.renderer.setClearColor(0x222222);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    // document.body.appendChild(this.renderer.domElement);
-    // debugger;
-    this.node.appendChild(this.renderer.domElement);
-    // debugger;
+    document.getElementById(this.node).appendChild(this.renderer.domElement);
 
     this.scene.add(new THREE.AxesHelper(10));
     this.animate();
@@ -49,9 +46,9 @@ export default class Threescene {
     this.render();
   };
 
-  // private empty = (elem) => {
-  //   while (elem.lastChild) elem.removeChild(elem.lastChild);
-  // };
+  private empty = (elem: HTMLElement) => {
+    while (elem.lastChild) elem.removeChild(elem.lastChild);
+  };
 
   public desotry = () => {
     cancelAnimationFrame(this.rafId);
@@ -59,5 +56,6 @@ export default class Threescene {
     this.renderer = null;
     this.scene = null;
     this.camera = null;
+    this.empty(document.getElementById(this.node));
   };
 }

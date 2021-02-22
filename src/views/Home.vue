@@ -1,5 +1,5 @@
 <template>
-  <div ref="three">
+  <div id="three">
     <!-- <div id="container">
     </div> -->
   </div>
@@ -13,8 +13,7 @@ export default defineComponent({
   name: 'Home',
   components: {},
   mounted() {
-    console.log(this.$refs.three);
-    const S: Threescene = new Threescene(this.$refs.three as Document);
+    const S: Threescene = new Threescene('three');
     temp = S;
   },
   beforeUnmount() {
