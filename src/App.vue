@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <router-link to="/">quick introduction</router-link>
+    <router-link to="/">quick start</router-link>
     | <router-link to="/geometry">geometry</router-link>
     | <router-link to="/material">material</router-link>
     | <router-link to="/mesh">mesh</router-link>
