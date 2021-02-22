@@ -1,7 +1,20 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">quick introduction</router-link>
+    | <router-link to="/geometry">geometry</router-link>
+    | <router-link to="/material">material</router-link>
+    | <router-link to="/mesh">mesh</router-link>
+    | <router-link to="/light">light</router-link>
+    | <router-link to="/group">group</router-link>
+    | <router-link to="/curve">curve</router-link>
+    | <router-link to="/texture">texture</router-link>
+    | <router-link to="/camera">camera</router-link>
+    | <router-link to="/spirit">spirit</router-link>
+    | <router-link to="/skeleton">skeleton</router-link>
+    | <router-link to="/audio">audio</router-link>
+    | <router-link to="/loader">loader</router-link>
+    | <router-link to="/audio">audio</router-link>
+    | <router-link to="/render">render</router-link>
   </div>
   <router-view />
 </template>

@@ -1,3 +1,4 @@
+There are some demos written by learning office three.js document.
 ## Project setup
 ```
 yarn install
