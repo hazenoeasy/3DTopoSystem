@@ -8,9 +8,10 @@ export default class Threescene {
 
   renderer: THREE.WebGLRenderer;
 
-  geometry: THREE.BoxGeometry;
+  geometry: THREE.BufferGeometry; // buffer类型几何体对象
+  // geometry: THREE.BoxGeometry; //
 
-  material: THREE.MeshLambertMaterial;
+  material: THREE.PointsMaterial;
 
   point: THREE.PointLight;
 
@@ -24,15 +25,84 @@ export default class Threescene {
 
   axesHelper: THREE.AxesHelper;
 
+  vertices: Float32Array;
+
+  colors: Float32Array;
+
+  normals: Float32Array;
+
+  indexs: Uint16Array;
+
   constructor(readonly node: string) {
     this.scene = new THREE.Scene();
-    this.geometry = new THREE.BoxGeometry(100, 100, 100);
-    this.material = new THREE.MeshLambertMaterial({
-      color: 0x0000ff,
-      opacity: 0.7,
-      transparent: true,
+    this.geometry = new THREE.BufferGeometry();
+    this.vertices = new Float32Array([
+      0,
+      0,
+      0, // 顶点1坐标
+      80,
+      0,
+      0, // 顶点2坐标
+      80,
+      80,
+      0, // 顶点3坐标
+
+      // 0,
+      // 0,
+      // 0, // 顶点4坐标   和顶点1位置相同
+      // 80,
+      // 80,
+      // 0, // 顶点5坐标  和顶点3位置相同
+      0,
+      80,
+      0, // 顶点6坐标
+    ]);
+    this.colors = new Float32Array([
+      1,
+      0,
+      0, // 顶点1颜色
+      0,
+      1,
+      0, // 顶点2颜色
+      0,
+      0,
+      1, // 顶点3颜色
+
+      1,
+      1,
+      0, // 顶点4颜色
+      0,
+      1,
+    ]);
+    this.normals = new Float32Array([
+      0,
+      0,
+      1, // 顶点1法向量
+      0,
+      0,
+      1, // 顶点2法向量
+      0,
+      0,
+      1, // 顶点3法向量
+      0,
+      0,
+      1, // 顶点4法向量
+    ]);
+    this.indexs = new Uint16Array([0, 1, 2, 0, 2, 3]);
+    this.geometry.attributes.position = new THREE.BufferAttribute(this.vertices, 3);
+
+    this.geometry.attributes.color = new THREE.BufferAttribute(this.colors, 3);
+
+    this.geometry.attributes.normals = new THREE.BufferAttribute(this.normals, 3);
+
+    this.geometry.index = new THREE.BufferAttribute(this.indexs, 1);
+    this.material = new THREE.PointsMaterial({
+      vertexColors: true,
+      side: THREE.DoubleSide, // 两面可见
+      size: 10.0,
     });
     this.mesh = new THREE.Mesh(this.geometry, this.material);
+    // this.mesh = new THREE.Points(this.geometry, this.material);
     this.renderer = new THREE.WebGLRenderer();
     this.point = new THREE.PointLight(0xffffff);
     this.ambient = new THREE.AmbientLight(0x444444);
@@ -56,6 +126,9 @@ export default class Threescene {
     this.scene.add(this.point);
     this.scene.add(this.ambient);
     this.scene.add(this.axesHelper);
+    console.log(this.geometry.attributes);
+    // console.log(this.geometry.faces);
+    // console.log(this.geometry.colors);
     this.animate();
   }
 
