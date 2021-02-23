@@ -3,6 +3,7 @@ import quickStart from '../views/quick-start.vue';
 import geometry from '../views/geometry.vue';
 import material from '../views/material.vue';
 import plf from '../views/plf.vue';
+import light from '../views/light.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,6 +29,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/plf',
     name: 'plf',
     component: plf,
+  },
+  {
+    path: '/light',
+    name: 'light',
+    component: light,
   },
 ];
 
