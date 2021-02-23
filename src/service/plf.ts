@@ -29,8 +29,9 @@ export default class Threescene {
     this.geometry = new THREE.BoxGeometry(100, 100, 100);
     this.material = new THREE.MeshLambertMaterial({
       color: 0x0000ff,
-      opacity: 0.7,
-      transparent: true,
+      // opacity: 0.7,
+      // transparent: true,
+      wireframe: true,
     });
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.renderer = new THREE.WebGLRenderer();
