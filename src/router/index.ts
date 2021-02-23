@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import quickStart from '../views/quick-start.vue';
 import geometry from '../views/geometry.vue';
+import material from '../views/material.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     // component: () => import('../views/geometry.vue'),
     component: geometry,
+  },
+  {
+    path: '/material',
+    name: 'material',
+    component: material,
   },
 ];
 
