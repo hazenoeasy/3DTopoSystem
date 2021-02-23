@@ -3,7 +3,7 @@
     <router-link to="/">quick start</router-link>
     | <router-link to="/geometry">geometry</router-link>
     | <router-link to="/material">material</router-link>
-    | <router-link to="/mesh">mesh</router-link>
+    | <router-link to="/plf">plf</router-link>
     | <router-link to="/light">light</router-link>
     | <router-link to="/group">group</router-link>
     | <router-link to="/curve">curve</router-link>

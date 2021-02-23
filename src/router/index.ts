@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import quickStart from '../views/quick-start.vue';
 import geometry from '../views/geometry.vue';
 import material from '../views/material.vue';
+import plf from '../views/plf.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -22,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/material',
     name: 'material',
     component: material,
+  },
+  {
+    path: '/plf',
+    name: 'plf',
+    component: plf,
   },
 ];
 
