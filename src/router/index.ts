@@ -4,6 +4,8 @@ import geometry from '../views/geometry.vue';
 import material from '../views/material.vue';
 import plf from '../views/plf.vue';
 import light from '../views/light.vue';
+import group from '../views/group.vue';
+import curve from '../views/curve.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -34,6 +36,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/light',
     name: 'light',
     component: light,
+  },
+  {
+    path: '/group',
+    name: 'group',
+    component: group,
+  },
+  {
+    path: '/curve',
+    name: 'curve',
+    component: curve,
   },
 ];
 
