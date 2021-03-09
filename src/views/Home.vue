@@ -1,23 +1,23 @@
 <template>
-  <div id="three">
+  <div id="four">
     <!-- <div id="container">
     </div> -->
   </div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Threescene from '../service/scene';
+import Threescene from '../service/sky';
 
 let temp: Threescene;
 export default defineComponent({
-  name: 'Home',
+  name: 'geometry',
   components: {},
   mounted() {
-    const S: Threescene = new Threescene('three');
+    const S: Threescene = new Threescene('four');
     temp = S;
   },
   beforeUnmount() {
-    temp.desotry();
+    temp.destory();
   },
 });
 </script>
