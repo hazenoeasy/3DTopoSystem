@@ -8,6 +8,7 @@ import { Capsule } from 'three/examples/jsm/math/Capsule';
 import { Octree } from 'three/examples/jsm/math/Octree';
 import { CompressedPixelFormat } from 'three';
 
+const SCALE = 2;
 export default class Threescene {
   scene: THREE.Scene;
 
@@ -40,7 +41,7 @@ export default class Threescene {
 
   private Clock: THREE.Clock;
 
-  GRAVITY = 30;
+  GRAVITY = 20;
 
   playerVelocity = new THREE.Vector3();
 
@@ -121,8 +122,15 @@ export default class Threescene {
   private loader = () => {
     const loader = new GLTFLoader();
     loader.load('/static/3D-Map.glb', (gltf) => {
-      this.scene.add(gltf.scene);
-      this.Octree.fromGraphNode(gltf.scene);
+      const model = gltf.scene;
+      // debugger;
+      model.children.forEach((child) => {
+        child.scale.set(child.scale.x * SCALE, child.scale.y * SCALE, child.scale.z * SCALE);
+      });
+      // model.scale.set(SCALE * model.scale.x, SCALE * model.scale.y, SCALE * model.scale.z);
+      this.scene.add(model);
+      const result = this.Octree.fromGraphNode(model.children[2]);
+      console.log(this.Octree);
       console.log(this.scene);
     });
   };
@@ -252,8 +260,9 @@ export default class Threescene {
       }
       this.Capsule.translate(result.normal.multiplyScalar(result.depth));
     }
-    if (this.Capsule.end.y < -50) {
-      this.Capsule.set(new THREE.Vector3(0, 2, 0), new THREE.Vector3(0, 3, 0), 0.35);
+    if (this.Capsule.end.y < -50 * SCALE) {
+      this.Capsule.set(new THREE.Vector3(0, 10, 0), new THREE.Vector3(0, 11, 0), 0.35);
+      this.playerVelocity.y = 0;
     }
   };
 
