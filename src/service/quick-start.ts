@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+import { TGALoader } from 'three/examples/jsm/loaders/TGALoader';
 
 export default class Threescene {
   scene: THREE.Scene;
@@ -18,7 +21,7 @@ export default class Threescene {
 
   rafId: number;
 
-  mesh: THREE.Mesh;
+  model: THREE.Group;
 
   controls: OrbitControls;
 
@@ -26,13 +29,6 @@ export default class Threescene {
 
   constructor(readonly node: string) {
     this.scene = new THREE.Scene();
-    this.geometry = new THREE.BoxGeometry(100, 100, 100);
-    this.material = new THREE.MeshLambertMaterial({
-      color: 0x0000ff,
-      opacity: 0.7,
-      transparent: true,
-    });
-    this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.renderer = new THREE.WebGLRenderer();
     this.point = new THREE.PointLight(0xffffff);
     this.ambient = new THREE.AmbientLight(0x444444);
@@ -40,6 +36,8 @@ export default class Threescene {
     this.init();
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     window.addEventListener('resize', this.onWindowResize, false);
+    this.loader();
+
     // this.controls.addEventListener('change', this.animate);
   }
 
@@ -52,17 +50,36 @@ export default class Threescene {
     document.getElementById(this.node).appendChild(this.renderer.domElement);
     this.renderer.setClearColor(0xb9d3ff, 1);
     this.scene.add(new THREE.AxesHelper(10));
-    this.scene.add(this.mesh);
     this.scene.add(this.point);
     this.scene.add(this.ambient);
     this.scene.add(this.axesHelper);
-    this.animate();
   }
 
   private onWindowResize = () => {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.setCamera();
   };
+
+  private loader() {
+    let result;
+    const objLoader = new OBJLoader();
+    const manager = new THREE.LoadingManager();
+    manager.addHandler(/\.tga$/i, new TGALoader());
+    const mtlLoader = new MTLLoader(manager);
+    mtlLoader.load('/static/honghu/demo.mtl', (materials) => {
+      debugger;
+      materials.preload();
+      objLoader.setMaterials(materials);
+      objLoader.load('/static/honghu/demo.obj', (obj) => {
+        debugger;
+        obj.position.set(0, 0, 0);
+        obj.scale.set(0.01, 0.01, 0.01);
+        this.model = obj;
+        this.scene.add(this.model);
+        this.animate();
+      });
+    });
+  }
 
   private setCamera() {
     const width = window.innerWidth; // 窗口宽度
@@ -75,14 +92,15 @@ export default class Threescene {
   }
 
   private render = (timestep: number) => {
-    if (this.renderTime === undefined) {
-      this.renderTime = timestep;
-    }
-    const elapsed = timestep - this.renderTime;
-    this.renderTime = timestep;
+    // 注释掉的功能用于自动旋转
+    // if (this.renderTime === undefined) {
+    // this.renderTime = timestep;
+    // }
+    // const elapsed = timestep - this.renderTime;
+    // this.renderTime = timestep;
     this.rafId = requestAnimationFrame(this.render);
     this.renderer.render(this.scene, this.camera);
-    this.mesh.rotateY(0.001 * elapsed);
+    // this.model.rotateY(0.001 * elapsed);
   };
 
   private renderTime: number;
