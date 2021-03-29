@@ -129,7 +129,8 @@ export default class Threescene {
       });
       // model.scale.set(SCALE * model.scale.x, SCALE * model.scale.y, SCALE * model.scale.z);
       this.scene.add(model);
-      const result = this.Octree.fromGraphNode(model.children[2]);
+      debugger;
+      const result = this.Octree.fromGraphNode(model);
       console.log(this.Octree);
       console.log(this.scene);
     });
