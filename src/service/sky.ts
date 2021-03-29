@@ -7,6 +7,8 @@ import ThreeGeo from 'three-geo';
 import { Capsule } from 'three/examples/jsm/math/Capsule';
 import { Octree } from 'three/examples/jsm/math/Octree';
 import { CompressedPixelFormat } from 'three';
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 
 const SCALE = 2;
 export default class Threescene {

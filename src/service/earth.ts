@@ -106,7 +106,7 @@ export default class Threescene {
         '}',
       ].join('\n'),
     };
-    const earthAtmoMat = new THREE.ShaderMaterial(atmoShader);
+    const earthAtmoMat = new THREE.ShaderMaterial(atmoShader); 
     const earthMat = new THREE.MeshPhongMaterial({
       color: 0xffffff,
       shininess: 200,
@@ -123,10 +123,11 @@ export default class Threescene {
       earthMat.specularMap.encoding = THREE.sRGBEncoding;
       earthMat.needsUpdate = true;
     });
+
+    //
     const earthLights = textureLoader.load('../assets/textures/planets/earth_lights_2048.png');
     earthLights.encoding = THREE.sRGBEncoding;
 
-    /* cloud没有高光 */
     const earthLightsMat = new THREE.MeshBasicMaterial({
       color: 0xffffff,
       blending: THREE.AdditiveBlending,
@@ -138,6 +139,7 @@ export default class Threescene {
     const clouds = textureLoader.load('textures/planets/earth_clouds_2048.png');
     clouds.encoding = THREE.sRGBEncoding;
 
+    /* cloud没有高光 */
     const earthCloudsMat = new THREE.MeshLambertMaterial({
       color: 0xffffff,
       blending: THREE.NormalBlending,
